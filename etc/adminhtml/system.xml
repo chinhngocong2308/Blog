@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="ahtblog" showInDefault="1" showInWebsite="1" showInStore="1" type="text" translate="label" sortOrder="250">
+            <label>Blog</label>
+            <tab>aht</tab>
+            <resource>AHT_Blog::aht_cofig</resource>
+            <group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20">
+                <label>General Settings</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="social_sharing" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Social Sharing</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Share blog post to social network (facebook,google,instgrams etc).</comment>
+                </field>
+                <field id="product" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Blog Related Products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Showing blog related products in slider on blog view.</comment>
+                </field>
+                <field id="comment" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Comment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Add comment on blog view.</comment>
+                </field>
+                <field id="comment_status" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Comment Approved/Disapproved</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set status for comment added by user is approved directly or need approval.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

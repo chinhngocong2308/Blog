@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+   <menu>
+        <add    id="AHT_Blog::blog" title="AHT Blog" 
+                module="AHT_Blog" sortOrder="2" 
+                resource="AHT_Blog::blog" translate="title"
+                dependsOnConfig="ahtblog/general/enable"/>
+
+        <add    id="AHT_Blog::manage_post" title="Manage Post" 
+                module="AHT_Blog" sortOrder="10"
+                action="ahtblog/post/index" 
+                resource="AHT_Blog::manage_post" parent="AHT_Blog::blog"/>
+
+        <add    id="AHT_Blog::manage_category" title="Manage Category" 
+                module="AHT_Blog" sortOrder="10" 
+                action="ahtblog/category/index" resource="AHT_Blog::manage_category" 
+                parent="AHT_Blog::blog"/>
+        <!-- Settings -->
+        <add    id="AHT_Blog::manage_comment" title="Manage Comment" 
+                module="AHT_Blog" sortOrder="10" 
+                resource="AHT_Blog::manage_comment" parent="AHT_Blog::blog"
+                action="ahtblog/comment/index"/>
+
+        <add    id="AHT_Blog::blog_configuration" title="Configuration" 
+                module="AHT_Blog" sortOrder="20" 
+                parent="AHT_Blog::blog" action="adminhtml/system_config/edit/section/ahtblog" 
+                resource="AHT_Blog::config_aht"/>
+
+    </menu>
+</config>
