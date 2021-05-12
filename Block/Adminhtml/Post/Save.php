@@ -1,27 +1,26 @@
 <?php
-namespace AHT\Blog\Block\Adminhtml\Category\Edit;
+
+namespace AHT\Blog\Block\Adminhtml\Post;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 /**
- * Class SaveButton
+ * Class Save
+ * @package AHT\Blog\Block\Adminhtml\Post
  */
-class SaveButton extends GenericButton implements ButtonProviderInterface
+class Save extends Generic implements ButtonProviderInterface
 {
-    /**
-     * @return array
-     */
+
     public function getButtonData()
     {
         return [
             'label' => __('Save Post'),
-            'class' => 'save primary',
             'data_attribute' => [
                 'mage-init' => ['button' => ['event' => 'save']],
                 'form-role' => 'save',
             ],
-            'sort_order' => 90,
+            'class' => 'primary save-button',
+            'sort_order' => 45,
         ];
     }
 }
-?>

@@ -1,24 +1,22 @@
 <?php
-namespace AHT\Blog\Block\Adminhtml\Category\Edit;
+
+namespace AHT\Blog\Block\Adminhtml\Post;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 /**
- * Class ResetButton
+ * Class Reset
+ * @package AHT\Blog\Block\Adminhtml\Post
  */
-class ResetButton implements ButtonProviderInterface
-{
-    /**
-     * @return array
-     */
+class Reset implements ButtonProviderInterface {
+
     public function getButtonData()
     {
         return [
             'label' => __('Reset'),
-            'class' => 'reset',
             'on_click' => 'location.reload();',
-            'sort_order' => 30
+            'class' => 'reset-form',
+            'sort_order' => 35
         ];
     }
 }
-?>

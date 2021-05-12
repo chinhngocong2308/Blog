@@ -1,0 +1,368 @@
+@import "slick.less";
+@import "slick-theme.less";
+
+& when (@media-common =true) {
+
+    /*Wbcom Blog Post Listing*/
+    .wbcomblog-post-main,
+    .wbblog__sidebar-main {
+        margin-top: 30px;
+    }
+
+    .wbblog-post-listing-main {
+        padding: 0;
+        margin-left: 10px;
+    }
+
+    .wbcomblog-post-main li {
+        display: inline-block;
+    }
+
+    .wbcomblog-post-main .wbcomblog-post-list {
+        margin-bottom: 30px;
+        background: #fff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        list-style: none;
+        display: flex;
+    }
+
+    .wbcomblog-post-list-image {
+        min-width: 50%;
+        max-width: 50%;
+        overflow: hidden;
+    }
+
+    .wbcomblog-post-list-image .wbblog-post-listing-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        -webkit-transition: -webkit-transform 0.3s ease-out;
+        transition: transform 0.3s ease-out;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+
+    .wbcomblog-post-list-image:hover img {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    .wbcomblog-post-list-main-content {
+        padding: 2em;
+    }
+
+    .wbcom-post-heading {
+        margin: 0 0 10px 0;
+    }
+
+    .wbcom-post-heading a {
+        color: #30241a;
+    }
+
+    .wbcom-post-heading:hover a {
+        text-decoration: none;
+        color: #221912;
+    }
+
+    .blog-post-author {
+        margin-left: 10px;
+    }
+
+    .wbcomblog-post-content {
+        margin: 13px 0;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+    /*Share Option*/
+    .wbcom-blog-social-sharing-links {
+        margin-top: 15px;
+    }
+
+    .wbcom-blog-social-sharing-links a {
+        display: inline-block;
+        width: 30px;
+        text-align: center;
+        height: 25px;
+        background-color: #375999;
+        color: #fff;
+        line-height: 24px;
+        font-size: 15px;
+        transition: 0.3s;
+        -webkit-transition-duration: 0.3s;
+        border-radius: 3px;
+    }
+
+    .wbcom-blog-social-sharing-links a:hover {
+        background-color: #3b5998;
+    }
+
+    .wbcom-blog-social-sharing-links .addthis_button_twitter {
+        background-color: #29c5f6;
+    }
+
+    .wbcom-blog-social-sharing-links .addthis_button_email {
+        background-color: #ea3c35;
+    }
+
+    .wbcom-blog-social-sharing-links .addthis_button_compact {
+        background-color: #006dc0;
+    }
+
+    .wbcom-blog-social-sharing-links .addthis_button_twitter:hover {
+        background-color: #039fd0;
+    }
+
+    .wbcom-blog-social-sharing-links .addthis_button_email:hover {
+        background-color: #ca1009;
+    }
+
+    .wbcom-blog-social-sharing-links .addthis_button_compact:hover {
+        background-color: #00479a;
+    }
+
+    .toolbar select {
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    /*Single Post*/
+    .blog-view-header h2 {
+        margin-bottom: 10px;
+    }
+
+    .blog-view-header {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+    }
+
+    .blog-post-view-image {
+        margin-bottom: 15px;
+    }
+
+
+    /*Related Product Listing*/
+    .blog-post-product {
+        display: flex;
+        margin: 0 -10px;
+    }
+
+    .blog-related-products {
+        margin-top: 40px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 30px;
+    }
+
+    .blog-related-products h3 {
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 1.8rem;
+    }
+
+    .blog-post-product-list {
+        width: 100%;
+        margin: 10px;
+        box-shadow: 0 0px 10px rgba(0, 0, 0, 0.08);
+        padding: 15px 12px;
+        border-radius: 4px;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        text-align: center;
+    }
+
+    .blog-post-product-list:hover {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-post-product-list a {
+        display: block;
+        color: #222;
+    }
+
+    .blog-post-product-list a:hover {
+        text-decoration: none;
+    }
+
+    .blog-post-view-product-name {
+        display: block;
+        margin-top: 12px;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .blog-view-main {
+        padding-left: 15px;
+    }
+
+
+
+    /*Commenct Section*/
+    .blog-post-comment-form .wbcom-blog-post-view {
+        padding: 20px;
+        margin-top: 15px;
+        background: #f9f9f9;
+    }
+
+    .blog-post-comment-form .wbcom-blog-post-view .control input {
+        width: 48.5%;
+        margin: 5px;
+    }
+
+    .blog-post-comment-form .wbcom-blog-post-view .control textarea {
+        margin: 5px;
+        width: 98.75%;
+    }
+
+    .blog-post-comment-form .wbcom-blog-post-view .actions {
+        margin: 5px;
+    }
+
+    .blog-view-comment-list {
+        background: #f9f9f9;
+        padding: 15px 15px 5px;
+        display: block;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .wbuser-info {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .wbuser-info span {
+        margin-right: 8px;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.4px;
+    }
+
+    .blog-post-comment-form {
+        margin-top: 30px;
+    }
+
+    p.blog-view-comment-content {
+        font-size: 14px;
+        line-height: 23px;
+        padding-left: 38px;
+    }
+
+    .blog-post-comment-list {
+        margin-top: 30px;
+    }
+
+    .blog-view-comment-list:after {
+        position: absolute;
+        content: "\f10d";
+        font-size: 30px;
+        color: #ddd;
+        left: 15px;
+        font-family: FontAwesome;
+        top: 50px;
+    }
+
+    /*Wbcom Sidebar Section*/
+    .field.wbcom-search {
+        position: relative;
+    }
+
+    .wbcom-search .actions {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .sidebar.sidebar-main:before {
+        z-index: -9;
+        border: none !important;
+    }
+
+    .wbcom-blog-search,
+    .wbblog__sidebar-main .sidebar-widget {
+        margin-bottom: 30px;
+    }
+
+    .wbblog__sidebar-main .sidebar-widget {
+        position: relative;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.08);
+        -moz-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.08);
+        -webkit-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.08);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-top: 5px solid #e9d5d2;
+    }
+
+    .wbblog__sidebar-main .sidebar-widget h3 {
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #30241a;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 12px;
+        margin: 0 0 16px;
+    }
+
+    .wbblog__sidebar-main .sidebar-widget ul {
+        padding: 0;
+        list-style: none;
+        margin: 0;
+    }
+
+    .wbblog__sidebar-main .sidebar-widget ul li {
+        margin: 0 0 10px;
+        padding: 0 0 10px;
+        border-bottom: 1px solid #eee;
+        list-style-type: none;
+    }
+
+    .wbblog__sidebar-main .sidebar-widget a {
+        color: #454545 !important;
+        text-decoration: none !important;
+    }
+
+
+    /*Responsive Css*/
+    @media only screen and (max-width: 740px) {
+
+        .wbcomblog-post-main .wbcomblog-post-list {
+            display: block;
+        }
+
+        .wbcomblog-post-list-image {
+            min-width: 100%;
+            max-width: 100%;
+            line-height: 0;
+        }
+
+        .wbblog-post-listing-main {
+            margin: 0;
+        }
+
+        .blog-post-comment-form .wbcom-blog-post-view .control input,
+        .blog-post-comment-form .wbcom-blog-post-view .control textarea {
+            width: 100%;
+        }
+
+        .blog-post-product {
+            display: block;
+        }
+
+        .blog-post-product-list {
+            width: 80%;
+            margin: 25px auto;
+        }
+
+        .blog-related-products {
+            text-align: center;
+        }
+    }
+}

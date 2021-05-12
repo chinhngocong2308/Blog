@@ -1,0 +1,113 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->create('AHT\Blog\Helper\Data');
+$imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+
+$blogPostCollection = $block->getCollection();
+
+$config = $block->getConfigDetails();
+?>
+
+<div class="wbcomblog-post-main">
+    <?php
+    if ($blogPostCollection->getSize() > 0) : ?>
+        <ul class="wbblog-post-listing-main">
+            <?php foreach ($blogPostCollection as $data) : ?>
+                <?php
+                $imagePath = '';
+                $postData = $data->getData();
+                $imageData = json_decode($postData['image']);
+                if (empty($imageData)) {
+                    $imagePath = $imageHelper->init($blogPostCollection, 'product_base_image')->constrainOnly(FALSE)
+                        ->keepAspectRatio(TRUE)
+                        ->keepFrame(FALSE)
+                        ->getUrl();;
+                } else {
+                    foreach ($imageData as $img) {
+                        $imgArr = (array)$img;
+                        $imagePath = $imgArr['url'];
+                    }
+                }
+                ?>
+                <li class="wbblog-post-listing">
+                    <div class="wbcomblog-post-list">
+                        <div class="wbcomblog-post-list-image">
+                            <a class="post-title" href="<?php echo $this->getUrl(
+                                                            'ahtblog/post/view',
+                                                            ['id' => $data->getId()]
+                                                        ) ?>">
+                                <img src="<?= $imagePath; ?>" alt="post-img" class="wbblog-post-listing-image">
+                            </a>
+                        </div>
+
+                        <div class="wbcomblog-post-list-main-content">
+                            <h2 class="wbcom-post-heading">
+                                <a class="post-title" href="<?php echo $this->getUrl(
+                                                                'ahtblog/post/view',
+                                                                ['id' => $data->getId()]
+                                                            ) ?>">
+                                    <?php echo $data->getTitle(); ?>
+
+                                </a>
+                            </h2>
+                            <span class="label date">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <?php
+                                $dateStr = strtotime($data->getPublishedAt());
+                                echo date('d-M-Y', $dateStr);
+                                ?>
+                            </span>
+                            <span class="blog-post-author">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <?= $helper->getPostAuthor($data['author']); ?></span>
+                            <div class="ahtblog-post-content">
+                                <?php echo $data->getShortContent(); ?>
+                            </div>
+                            <a class="action primary readmore" href="<?php echo $this->getUrl(
+                                                                            'ahtblog/post/view',
+                                                                            ['id' => $data->getId()]
+                                                                        ) ?>">Read more
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <div style="clear: both"></div>
+        <div class="toolbar-bottom">
+            <div class="toolbar bottom">
+                <?php echo $block->getPagerHtml(); ?>
+            </div>
+        </div>
+    <?php else : ?>
+        <p class="message notice"><?php echo __('No blog post available.') ?></p>
+    <?php endif; ?>
+</div>
+<script>
+    require([
+        'jquery',
+        'slick'
+    ], function($) {
+        $(document).ready(function() {
+            $(".wbblog-post-listing-main").slick({
+                dots: false,
+                infinite: false,
+                arrows: false,
+                dots: false,
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                responsive: [{
+                        breakpoint: 780,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                            rows: 2,
+                        }
+                    },
+
+                ]
+            });
+
+        });
+    });
+</script>

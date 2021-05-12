@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="aht_blog_slider" class="AHT\Blog\Block\Blog\Post" is_email_compatible="false"
+            placeholder_image="Magento_Widget::placeholder.gif">
+        <label translate="true">AHT Blog Post </label>
+        <description translate="true">Display AHT Post to customer view</description>
+        <parameters>
+            <parameter name="numberblog" xsi:type="text" required="true" visible="true" sort_order="20">
+                <label translate="true">Number of Post to Display </label>
+            </parameter>
+            <parameter name="display" xsi:type="select" visible="true" required="true" sort_order="25">
+                <label translate="true">Display Type</label>
+                <options>
+                    <option name="displaylist" value="0">
+                        <label>List Blog</label>
+                    </option>
+                    <option name="displayslide" value="1" selected="true">
+                        <label>Slider Blog</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="26">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="widget/postlist.phtml" selected="true">
+                        <label translate="true">Blog list slider</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

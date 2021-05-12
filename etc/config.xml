@@ -5,8 +5,7 @@
             <general>
                 <enable>1</enable>
                 <page_title>Blog Page Title</page_title>
-                <social_sharing>1</social_sharing>
-                <product>1</product>
+                <!-- <product>1</product> -->
                 <comment>1</comment>
                 <comment_status>1</comment_status>
             </general>

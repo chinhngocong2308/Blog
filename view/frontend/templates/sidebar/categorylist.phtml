@@ -1,0 +1,21 @@
+<?php
+$baseUrl = $block->getBaseUrl();
+$category = $block->getPostCategory();
+?>
+<div class="sidebar-widget wb-blog-category">
+    <h3 class="blog-category-heading">Blog Categories</h3>
+    <ul class="list-group wbcom-cat-list-main">
+        <?php if(!empty($category)){?>
+            <?php foreach ($category as $data) {?>
+                <li class="list-group-item wbcom-cat-list">
+                    <a href="<?= $baseUrl.'ahtblog/category/post/?id='.$data['id'];?>">
+                        <?= $data['title']?>
+                    </a>
+                </li>
+            <?php }?>
+        <?php } else {?>
+            <li class="list-group-item wbcom-cat-list message notice">No blog category found.</li>
+        <?php }?>
+    </ul>
+</div>
+

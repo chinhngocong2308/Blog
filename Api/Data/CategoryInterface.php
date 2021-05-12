@@ -3,7 +3,7 @@ namespace AHT\Blog\Api\Data;
 
 interface CategoryInterface
 {
-	const POST_ID = 'id';
+	const CATEGORY_ID = 'id';
 	const TITLE  = 'title';
 	const METATITLE = 'meta_title';
     const METADESCRIPTION = 'meta_description';

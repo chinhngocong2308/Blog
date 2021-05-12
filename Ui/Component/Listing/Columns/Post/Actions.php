@@ -1,8 +1,6 @@
 <?php
 
 namespace AHT\Blog\Ui\Component\Listing\Columns\Post;
-use Magento\Framework\App\ObjectManager;
-use Magento\Framework\Escaper;
 
 class Actions extends \Magento\Ui\Component\Listing\Columns\Column
 {
@@ -13,7 +11,6 @@ class Actions extends \Magento\Ui\Component\Listing\Columns\Column
      * @var \Magento\Framework\UrlInterface
      */
     protected $urlBuilder;
-    private $escaper;
 
     /**
      * Actions constructor.
@@ -39,7 +36,6 @@ class Actions extends \Magento\Ui\Component\Listing\Columns\Column
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
                 if (isset($item['id'])) {
-                    $title = $this->getEscaper()->escapeHtml($item['title']);
                     $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->urlBuilder->getUrl(
@@ -57,10 +53,10 @@ class Actions extends \Magento\Ui\Component\Listing\Columns\Column
                                     'id' => $item['id']
                                 ]
                             ),
-                            'label' => __('Remove'),
+                            'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete '. $title. ' ?'),
-                                'message' => __('Are you sure wan\'t to delete '. $title. ' ?')
+                                'title' => __('Delete "${ $.$data.title }"'),
+                                'message' => __('Are you sure wan\'t to delete "${ $.$data.title }" ?')
                             ]
                         ]
                     ];
@@ -69,12 +65,5 @@ class Actions extends \Magento\Ui\Component\Listing\Columns\Column
         }
 
         return $dataSource;
-    }
-    private function getEscaper()
-    {
-        if (!$this->escaper) {
-            $this->escaper = ObjectManager::getInstance()->get(Escaper::class);
-        }
-        return $this->escaper;
     }
 }

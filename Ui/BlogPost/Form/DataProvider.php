@@ -74,9 +74,12 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
                     $postId[] = (array)$newData;
                 }
             }
-            $data['ahtblog_post_form_product_listing'] = $postId;
-            $this->loadedData[$post->getId()] = $data;
+            $data['ahtblog_post_form_product_listing']['general'] = $postId;
+            $this->loadedData[$post->getId()]= $data;
         }
+            // echo'<pre>';
+            // print_r($data);
+            // exit();
         return $this->loadedData;
     }
 }

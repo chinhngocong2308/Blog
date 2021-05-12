@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">ahtblog_post_form.ahtblog_post_form_data_source</item>
+            <item name="deps" xsi:type="string">ahtblog_post_form.ahtblog_post_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Blog Post</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">ahtblog_post_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">AHT\Blog\Block\Adminhtml\Post\Back</item>
+            <item name="delete" xsi:type="string">AHT\Blog\Block\Adminhtml\Post\Delete</item>
+            <item name="reset" xsi:type="string">AHT\Blog\Block\Adminhtml\Post\Reset</item>
+            <item name="save" xsi:type="string">AHT\Blog\Block\Adminhtml\Post\Save</item>
+        </item>
+    </argument>
+    <dataSource name="ahtblog_post_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">AHT\Blog\Ui\BlogPost\Form\DataProvider</argument>
+            <argument name="name" xsi:type="string">ahtblog_post_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="*/*/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <container name="postform">
+        <fieldset name="general">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Post Information</item>
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="opened" xsi:type="boolean">true</item>
+                    <item name="area" xsi:type="string">postform</item>
+                </item>
+            </argument>
+            <field name="id">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="visible" xsi:type="boolean">false</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="dataScope" xsi:type="string">id</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="status">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">boolean</item>
+                        <item name="formElement" xsi:type="string">checkbox</item>
+                        <item name="prefer" xsi:type="string">toggle</item>
+                        <item name="label" xsi:type="string" translate="true">Status</item>
+                        <item name="valueMap" xsi:type="array">
+                            <item name="true" xsi:type="number">1</item>
+                            <item name="false" xsi:type="number">0</item>
+                        </item>
+                        <item name="default" xsi:type="number">1</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="title">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Title</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="sticky">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">boolean</item>
+                        <item name="formElement" xsi:type="string">checkbox</item>
+                        <item name="prefer" xsi:type="string">toggle</item>
+                        <item name="label" xsi:type="string" translate="true">Pin post at the top</item>
+                        <item name="valueMap" xsi:type="array">
+                            <item name="true" xsi:type="number">1</item>
+                            <item name="false" xsi:type="number">0</item>
+                        </item>
+                        <item name="default" xsi:type="number">0</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="published_at">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Published on</item>
+                        <item name="formElement" xsi:type="string">date</item>
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="options" xsi:type="array">
+                            <item name="showsTime" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="author">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">AHT\Blog\Model\Config\Source\Author</item>
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Author</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="source" xsi:type="string">post</item>
+                        <item name="dataScope" xsi:type="string">author</item>
+                        <item name="sortOrder" xsi:type="number">30</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="category_id">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">AHT\Blog\Model\Config\Source\Category</item>
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">int</item>
+                        <item name="label" xsi:type="string" translate="true">Category</item>
+                        <item name="formElement" xsi:type="string">multiselect</item>
+                        <item name="component" xsi:type="string">Magento_Ui/js/form/element/multiselect</item>
+                        <item name="template" xsi:type="string">ui/form/field</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="elementTmpl" xsi:type="string">ui/form/element/multiselect</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="stores">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">Magento\Cms\Ui\Component\Listing\Column\Cms\Options</item>
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">int</item>
+                        <item name="default" xsi:type="string">0</item>
+                        <item name="label" xsi:type="string" translate="true">Store View</item>
+                        <item name="formElement" xsi:type="string">multiselect</item>
+                        <item name="component" xsi:type="string">Magento_Ui/js/form/element/multiselect</item>
+                        <item name="template" xsi:type="string">ui/form/field</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="elementTmpl" xsi:type="string">ui/form/element/multiselect</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="image" sortOrder="40" formElement="imageUploader">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">Post</item>
+                    </item>
+                </argument>
+                <settings>
+                    <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                    <dataType>string</dataType>
+                    <label translate="true">Post Image</label>
+                    <visible>true</visible>
+                    <required>false</required>
+                </settings>
+                <formElements>
+                    <imageUploader>
+                        <settings>
+                            <required>false</required>
+                            <uploaderConfig>
+                                <param xsi:type="url" name="url" path="ahtblog/post/upload"/>
+                            </uploaderConfig>
+                            <previewTmpl>AHT_Blog/image-preview</previewTmpl>
+                            <openDialogTitle>Media Gallery</openDialogTitle>
+                            <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                            <maxFileSize>4194304</maxFileSize>
+                        </settings>
+                    </imageUploader>
+                </formElements>
+            </field>
+
+        </fieldset>
+        <fieldset name="content">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Post Content</item>
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="opened" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <field name="short_content">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Short Content</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">wysiwyg</item>
+                        <item name="template" xsi:type="string">ui/form/field</item>
+                        <item name="wysiwyg" xsi:type="boolean">true</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="content">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Content</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">wysiwyg</item>
+                        <item name="template" xsi:type="string">ui/form/field</item>
+                        <item name="wysiwyg" xsi:type="boolean">true</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+        </fieldset>
+        <fieldset name="search_engine_optimization">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Post Search Engine Optimization</item>
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="opened" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <field name="meta_title">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Meta Title</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">textarea</item>
+                        <item name="min" xsi:type="number">50</item>
+                        <item name="max" xsi:type="number">170</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="meta_description">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Meta Description</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">textarea</item>
+                        <item name="min" xsi:type="number">100</item>
+                        <item name="max" xsi:type="number">170</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="meta_keyword">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Meta Keywords</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">textarea</item>
+                        <item name="min" xsi:type="number">0</item>
+                        <item name="max" xsi:type="number">255</item>
+                    </item>
+                </argument>
+            </field>
+        </fieldset>
+    </container>
+</form>

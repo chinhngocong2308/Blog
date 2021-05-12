@@ -1,0 +1,94 @@
+<?php
+$postData = $block->getPostDetails();
+$baseUrl  = $block->getBaseUrl();
+$formKey = $block->getFormKey();
+$config = $block->getConfigDetails();
+$postComment = $block->getPostComment();
+$author = $this->getPostAuthor();
+$mediaUrl = $this->getMediaBaseUrl();
+?>
+
+<?php if(!empty($postData)) {?>
+    <div class="blog-view-main">
+        <div class="blog-view-header">
+            <h2><?= $postData['title'];?></h2>
+            <span class="label date">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <?php
+                $dateStr = strtotime($postData['published_at']);
+                echo date('d-M-Y', $dateStr);
+                ?>
+                        </span>
+            <span class="blog-post-author">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <?= $author;?>
+            </span>
+        </div>
+        <div class="content">
+            <div class="blog-post-view-image">
+                <?php if((!empty($postData['image'])) && (array_key_exists('url',$postData['image'][0]))) {?>
+                    <img src="<?= $postData['image'][0]['url'];?>" alt="<? $postData['title']; ?>">
+                <?php }?>
+            </div>
+            <div class="blog-post-view-content">
+                <?= $postData['content'];?>
+            </div>
+        </div>
+        <?php if ($config['comment'] != 0) {?>
+            <div class="blog-post-comment-form">
+                <h2>type your comment below and Enter ok !!! </h2>
+                <span>Your email address willed we hidden *</span>
+                <div class="wbcom-blog-post-view">
+
+                    <form class="form wbcom-blog-post-view-form" id="wbcom_post_mini_form" action="<?= $baseUrl.'ahtblog/post/comment'?>" method="post">
+                        <div class="field wbcom-blog-post-review">
+                            <div class="control">
+                                <input id="username" type="text" name="username" value="" placeholder="Username" class="input-text" maxlength="128" role="combobox" required="required" >
+                                <input id="email" type="email" name="email" value="" placeholder="Email" maxlength="128" role="combobox" required="required" >
+                                <textarea name="comment" rows="5" cols="10" placeholder="Here your comment is going...."></textarea>
+                                <input type="hidden" value="<?= $formKey;?>" name="formKey">
+                                <input type="hidden" value="<?= $postData['id'];?>" name="post_id">
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <button type="submit" title="Search" class="action wbcom-search-submit primary" aria-label="Search" value="Post Comment">
+                                Post Comment
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <!-- <?php if (!empty($postComment)) {?>
+                <div class="blog-post-comment-list">
+                    <h3>Comment</h3>
+                    <div class="blog-view-comment-main">
+                        <?php foreach ($postComment as $comment) {?>
+                            <div class="blog-view-comment-list">
+                                <div class="wbuser-info">
+                                    <span>
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        <?php
+                                        $dateStr = strtotime($comment['created_at']);
+                                        echo date('d-M-Y', $dateStr);
+                                        ?>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <?= $comment['username']?>
+                                    </span>
+                                </div>
+                                <p class="blog-view-comment-content">
+                                    <?= $comment['comment'];?>
+                                </p>
+                            </div>
+                        <?php }?>
+                    </div>
+                </div>
+            <?php }?> -->
+        <?php }?>
+    </div>
+<?php } else {?>
+    <div class="message notice">Post Details are not available.</div>
+<?php }?>
+
