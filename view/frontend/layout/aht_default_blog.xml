@@ -5,9 +5,8 @@
         <css src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" src_type="url"/>
     </head>
     <body>
-        <!-- <referenceBlock name="sidebar.additional" remove="true"/> -->
-        <referenceContainer name="sidebar.main" htmlTag="div" htmlClass="wbblog__sidebar-main">
-            <!-- <block name="wbblog.post.search" class="Wbcom\Blog\Block\Sidebar\Search" template="sidebar/search.phtml"/> -->
+        <referenceContainer name="sidebar.main" htmlTag="div" htmlClass="ahtblog__sidebar-main">
+            <block name="ahtblog.post.search" class="AHT\Blog\Block\Sidebar\Search" template="sidebar/search.phtml"/>
 
             <block class="AHT\Blog\Block\Sidebar\Category" name="ahtblog.category.list"
                    template="sidebar/categorylist.phtml"/>

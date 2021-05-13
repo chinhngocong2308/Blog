@@ -61,6 +61,8 @@ class Save extends \Magento\Backend\App\Action
             $model->setStore(json_encode($categoryData['store']));
             if (array_key_exists('parent_category', $categoryData)){
                 $model->setParentCategory(json_encode($categoryData['parent_category']));
+            }elseif(!array_key_exists('parent_category', $categoryData)){
+                $model->setParentCategory('["0"]');
             }
             try{
                 $model->save();

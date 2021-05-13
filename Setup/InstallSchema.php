@@ -360,6 +360,15 @@ class InstallSchema implements InstallSchemaInterface
                     'Post Id'
                 )
                 ->addColumn(
+                    'parent_id',
+                    \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    255,
+                    [
+                        'nullable'  => false,
+                    ],
+                    'Parent Comment Id'
+                )
+                ->addColumn(
                     'username',
                     \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                     255,

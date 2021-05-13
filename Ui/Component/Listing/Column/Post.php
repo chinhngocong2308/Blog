@@ -21,9 +21,9 @@ class Post extends Column
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$items) {
                 if ($items['status'] == 1) {
-                    $items['status'] = 'Published';
+                    $items['status'] = '<span class="grid-severity-notice"><span>'.'Published'.'</span></span>';
                 } else {
-                    $items['status'] = 'Pending';
+                    $items['status'] = '<span class="grid-severity-minor"><span>'.'Pending'. '</span></span>';
                 }
             }
         }

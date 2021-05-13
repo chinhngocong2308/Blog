@@ -17,7 +17,11 @@
             <argument name="collection" xsi:type="object" shared="false">AHT\Blog\Model\ResourceModel\Category\Collection</argument>
         </arguments>
     </virtualType>
-
+     <virtualType name="CommentGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">AHT\Blog\Model\ResourceModel\Comment\Collection</argument>
+        </arguments>
+    </virtualType>
     <virtualType name="PostGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
         <arguments>
             <argument name="collection" xsi:type="object" shared="false">AHT\Blog\Model\ResourceModel\Post\Collection</argument>

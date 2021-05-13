@@ -75,8 +75,9 @@ class Post extends \Magento\Framework\View\Element\Template
      */
     public function getConfigDetails(){
         $config = [];
-        // $config['product'] = $this->_scopeConfig->getValue('wbcomblog/general/product', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        $config['number_display'] = $this->_scopeConfig->getValue('ahtblog/general/number_display', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $config['comment'] = $this->_scopeConfig->getValue('ahtblog/general/comment', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         return $config;
     }
+    
 }

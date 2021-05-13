@@ -42,11 +42,37 @@
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
-                        <item name="label" xsi:type="string" translate="true">Delete Comment(s)</item>
+                        <item name="label" xsi:type="string" translate="true">Delete </item>
                         <item name="url" xsi:type="url" path="ahtblog/comment/massDelete"/>
                         <item name="confirm" xsi:type="array">
-                            <item name="title" xsi:type="string" translate="true">Delete Comment(s)</item>
+                            <item name="title" xsi:type="string" translate="true">Delete </item>
                             <item name="message" xsi:type="string" translate="true">Are you sure wan't to delete selected Comment(s)?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+            <action name="approved">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">approved</item>
+                        <item name="label" xsi:type="string" translate="true">Approved </item>
+                        <item name="url" xsi:type="url" path="ahtblog/comment/massApproved"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Approved </item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure wan't to approved selected Comment(s)?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+             <action name="disapproved">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">approved</item>
+                        <item name="label" xsi:type="string" translate="true">Disapproved </item>
+                        <item name="url" xsi:type="url" path="ahtblog/comment/massDisapproved"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Disapproved </item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure wan't to approved selected Comment(s)?</item>
                         </item>
                     </item>
                 </argument>
@@ -57,8 +83,7 @@
         <filters name="listing_filters"/>
         <paging name="listing_paging"/>
     </listingToolbar>
-
-    <!-- <columns name="aht_blogcomment_columns">
+    <columns name="aht_blogcomment_columns">
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -103,18 +128,6 @@
                 </item>
             </argument>
         </column>
-              
-        <column name="status" class="AHT\Blog\Ui\Component\Listing\Column\Comment">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="sortOrder" xsi:type="number">60</item>
-                    <item name="label" translate="true" xsi:type="string">Status</item>
-                    <item name="dataType" xsi:type="string">select</item>
-                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
-                </item>
-            </argument>
-        </column>
-        
         <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -137,6 +150,16 @@
                 </item>
             </argument>
         </column>
+          <column name="status" class="AHT\Blog\Ui\Component\Listing\Column\Comment">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">91</item>
+                    <item name="label" translate="true" xsi:type="string">Status</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                </item>
+            </argument>
+        </column>
         <actionsColumn class="AHT\Blog\Ui\Component\Listing\Columns\Comment\Actions" name="actions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -144,97 +167,5 @@
                 </item>
             </argument>
         </actionsColumn>
-    </columns> -->
-
-    <columns name="aht_blogcomment_columns">
-		<settings>
-            <editorConfig>
-                <param name="clientConfig" xsi:type="array">
-                    <item name="saveUrl" xsi:type="url" path="ahtblog/comment/inlineEdit"/>
-                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
-                </param>
-                <param name="indexField" xsi:type="string">id</param>
-                <param name="enabled" xsi:type="boolean">true</param>
-                <param name="selectProvider" xsi:type="string">ahtblog_blogcomment_listing.ahtblog_blogcomment_listing.aht_blogcomment_columns.ids</param>
-            </editorConfig>
-            <childDefaults>
-                <param name="fieldAction" xsi:type="array">
-                    <item name="provider" xsi:type="string">ahtblog_blogcomment_listing.ahtblog_blogcomment_listing.aht_blogcomment_columns_editor</item>
-                    <item name="target" xsi:type="string">startEdit</item>
-                    <item name="params" xsi:type="array">
-                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
-                        <item name="1" xsi:type="boolean">true</item>
-                    </item>
-                </param>
-            </childDefaults>
-        </settings>
-		<selectionsColumn name="ids">
-            <settings>
-                <indexField>id</indexField>
-                <resizeEnabled>false</resizeEnabled>
-                <resizeDefaultWidth>55</resizeDefaultWidth>
-            </settings>
-        </selectionsColumn>
-        <column name="id">
-            <settings>
-                <filter>textRange</filter>
-                <label translate="true">ID</label>
-                <sorting>asc</sorting>
-            </settings>
-        </column>
-        <column name="post_id">
-            <settings>
-                <filter>textRange</filter>
-                <label translate="true">Post ID</label>
-                <sorting>asc</sorting>
-            </settings>
-        </column>
-        <column name="username">
-            <settings>
-                <filter>textRange</filter>
-                <label translate="true">User name</label>
-                <sorting>asc</sorting>
-            </settings>
-        </column>
-         <column name="email">
-           <settings>
-                <filter>textRange</filter>
-                <label translate="true">Email</label>
-                <sorting>asc</sorting>
-            </settings>
-        </column>
-		<column name="status" component="Magento_Ui/js/grid/columns/select">
-            <settings>
-                <options class="AHT\Blog\Model\Comment\Source\Status"/>
-                <filter>select</filter>
-                <editor>
-                    <editorType>select</editorType>
-                </editor>
-                <dataType>select</dataType>
-                <label translate="true">Status</label>
-            </settings>
-        </column>
-		<column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
-            <settings>
-                <filter>dateRange</filter>
-                <dataType>date</dataType>
-                <label translate="true">Created</label>
-            </settings>
-        </column>
-        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
-            <settings>
-                <filter>dateRange</filter>
-                <dataType>date</dataType>
-                <label translate="true">Update At</label>
-            </settings>
-        </column>
-		<actionsColumn name="actions" class="AHT\Blog\Ui\Component\Listing\Columns\Category\Actions">
-            <settings>
-                <indexField>id</indexField>
-                <resizeEnabled>false</resizeEnabled>
-                <resizeDefaultWidth>107</resizeDefaultWidth>
-            </settings>
-        </actionsColumn>
     </columns>
-
 </listing>

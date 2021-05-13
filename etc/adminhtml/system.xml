@@ -12,11 +12,11 @@
                     <label>Enable Module</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <!-- <field id="product" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enable Blog Related Products</label>
+                <field id="slide" translate="label slide" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Blog Slide </label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Showing blog related products in slider on blog view.</comment>
-                </field> -->
+                    <comment>Showing blog in slider on blog view.</comment>
+                </field>
                 <field id="comment" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Comment</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -27,9 +27,9 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Set status for comment added by user is approved directly or need approval.</comment>
                 </field>
-                <field id="aht_blog_test" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>test config Link</label>
-                    <comment>This is post link</comment>
+                <field id="number_display" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number blog show</label>
+                    <comment>Display number post to customer view </comment>
                 </field>
             </group>
         </section>

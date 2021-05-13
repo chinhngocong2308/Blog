@@ -69,10 +69,9 @@ class Post extends Template
     public function getConfigDetails()
     {
         $config = [];
-        // $config['product'] = $this->_scopeConfig->getValue('ahtblog/general/product', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        $config['slide'] = $this->_scopeConfig->getValue('ahtblog/general/slide', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $config['comment'] = $this->_scopeConfig->getValue('ahtblog/general/comment', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $config['comment'] = $this->_scopeConfig->getValue('ahtblog/general/comment', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-
+        $config['number_display'] = $this->_scopeConfig->getValue('ahtblog/general/number_display', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         return $config;
     }
 

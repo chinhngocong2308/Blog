@@ -3,9 +3,7 @@
 namespace AHT\Blog\Model;
 
 use AHT\Blog\Api\Data\CategoryInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\DataObject\IdentityInterface;
-use Magento\Framework\Exception\LocalizedException;
 
 
 class Category extends \Magento\Framework\Model\AbstractModel implements CategoryInterface, IdentityInterface

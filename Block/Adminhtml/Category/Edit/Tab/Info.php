@@ -121,7 +121,7 @@ class Info extends Generic implements TabInterface{
                     'name'     => 'parent_category[]',
                     'label'    => __('Parent Category'),
                     'title'    => __('Parent Category'),
-                    'required' => true,
+                    'required' => false,
                     'values'   => $parentCat
                 ]
             );

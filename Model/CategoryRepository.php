@@ -10,7 +10,6 @@ use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Reflection\DataObjectProcessor;
 use AHT\Blog\Model\ResourceModel\Category as ResourceCategory;
-use AHT\Blog\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
 use Magento\Store\Model\StoreManagerInterface;
 
 class CategoryRepository implements CategoryRepositoryInterface

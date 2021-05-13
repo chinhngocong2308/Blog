@@ -2,21 +2,20 @@
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $helper = $objectManager->create('AHT\Blog\Helper\Data');
 $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+$config = $block->getConfigDetails();
 
-if ($numberToWidget=$block->getData('numberblog')) {
-    $blogPostCollection = $block->getCollection()->setPageSize($numberToWidget);
+if ($config['number_display']) {
+    $blogPostCollection = $block->getCollection()->setPageSize($config['number_display']);
 } else 
 {
     $blogPostCollection = $block->getCollection();
 }
-$displaySlide=$block->getData('display');
-$config = $block->getConfigDetails();
 ?>
 
-<div class="wbcomblog-post-main">
+<div class="ahtblog-post-main">
     <?php
     if ($blogPostCollection->getSize() > 0) : ?>
-        <ul class="wbblog-post-listing-mains">
+        <ul class="ahtblog-post-listing-mains">
             <?php foreach ($blogPostCollection as $data) : ?>
                 <?php
                 $imagePath = '';
@@ -34,19 +33,19 @@ $config = $block->getConfigDetails();
                     }
                 }
                 ?>
-                <li class="wbblog-post-listing">
-                    <div class="wbcomblog-post-list">
-                        <div class="wbcomblog-post-list-image">
+                <li class="ahtblog-post-listing">
+                    <div class="ahtblog-post-list">
+                        <div class="ahtblog-post-list-image">
                             <a class="post-title" href="<?php echo $this->getUrl(
                                                             'ahtblog/post/view',
                                                             ['id' => $data->getId()]
                                                         ) ?>">
-                                <img src="<?= $imagePath; ?>" alt="post-img" class="wbblog-post-listing-image">
+                                <img src="<?= $imagePath; ?>" alt="post-img" class="ahtblog-post-listing-image">
                             </a>
                         </div>
 
-                        <div class="wbcomblog-post-list-main-content">
-                            <h2 class="wbcom-post-heading">
+                        <div class="ahtblog-post-list-main-content">
+                            <h2 class="aht-post-heading">
                                 <a class="post-title" href="<?php echo $this->getUrl(
                                                                 'ahtblog/post/view',
                                                                 ['id' => $data->getId()]
@@ -88,33 +87,30 @@ $config = $block->getConfigDetails();
         <p class="message notice"><?php echo __('No blog post available.') ?></p>
     <?php endif; ?>
 </div>
-<!-- <script>
+<script>
     require([
         'jquery',
         'slick'
     ], function($) {
         $(document).ready(function() {
-            if ($displaySlide = 1) {
-                $(".wbblog-post-listing-main").slick({
-                dots: false,
-                infinite: false,
-                arrows: false,
-                dots: false,
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                responsive: [{
+            if (<?= $config['slide'] ?> == 1) {
+                $(".ahtblog-post-listing-mains").slick({
+                    dots: false,
+                    infinite: false,
+                    arrows: false,
+                    dots: false,
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    responsive: [{
                         breakpoint: 780,
                         settings: {
                             slidesToShow: 2,
                             slidesToScroll: 2,
                             rows: 2,
                         }
-                    },
-
-                ]
-            });
+                    }, ]
+                });
             }
-           
         });
     });
-</script> -->
+</script>

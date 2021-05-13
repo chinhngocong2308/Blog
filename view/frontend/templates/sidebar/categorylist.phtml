@@ -1,21 +1,44 @@
 <?php
 $baseUrl = $block->getBaseUrl();
 $category = $block->getPostCategory();
-?>
-<div class="sidebar-widget wb-blog-category">
-    <h3 class="blog-category-heading">Blog Categories</h3>
-    <ul class="list-group wbcom-cat-list-main">
-        <?php if(!empty($category)){?>
-            <?php foreach ($category as $data) {?>
-                <li class="list-group-item wbcom-cat-list">
-                    <a href="<?= $baseUrl.'ahtblog/category/post/?id='.$data['id'];?>">
-                        <?= $data['title']?>
-                    </a>
-                </li>
-            <?php }?>
-        <?php } else {?>
-            <li class="list-group-item wbcom-cat-list message notice">No blog category found.</li>
-        <?php }?>
-    </ul>
-</div>
 
+?>
+
+<?php if (!empty($category)) { ?>
+    <div class="sidebar-widget aht-blog-category">
+        <h3 class="blog-category-heading">Blog Categories</h3>
+        <ul class="list-group aht-cat-list-main">
+            <?php foreach ($category as $data) {
+                if ($data['parent_category']) {
+                    $parentCate = (array)json_decode($data['parent_category']);
+                } else {
+                    $parentCate = [];
+                }
+                foreach ($parentCate as $value) {
+                    if ($value == 0 || $value == NULL) {
+            ?>
+                        <li class="list-group-item aht-cat-list">
+                            <a href="<?= $baseUrl . 'ahtblog/category/post/?id=' . $data['id']; ?>">
+                                <?= $data['title']; ?>
+                            </a>
+                                <?php }
+                            foreach ($category as $datas) {
+                                if ($datas['id'] == $value) {
+                                ?>  <p class="child-category">
+                                    <a href="<?= $baseUrl . 'ahtblog/category/post/?id=' . $data['id']; ?>">
+                            <?php
+                                    echo $data['title'];
+                                    ?></p>
+                                    <?php
+                                }else { ?>
+                                <?php }
+                            }
+                        } ?> </a>
+                            
+                        </li>
+                    <?php } ?>
+                <?php } else { ?>
+                    <li class="list-group-item aht-cat-list message notice">No blog category found.</li>
+                <?php } ?>
+        </ul>
+    </div>

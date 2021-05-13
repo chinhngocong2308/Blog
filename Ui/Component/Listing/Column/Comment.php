@@ -21,9 +21,9 @@ class Comment extends Column
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$items) {
                 if ($items['status'] == 1) {
-                    $items['status'] = 'Approved';
+                    $items['status'] = '<span class="grid-severity-notice"><span>'.'Approved'.'</span></span>';
                 } else {
-                    $items['status'] = 'Disapproved';
+                    $items['status'] = '<span class="grid-severity-critical"><span>'.'Disapproved'. '</span></span>';
                 }
             }
         }

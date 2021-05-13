@@ -2,19 +2,19 @@
 $baseUrl = $block->getBaseUrl();
 $latestPost = $block->getLatestPostList();
 ?>
-<div class="sidebar-widget wb-blog-recent-post">
+<div class="sidebar-widget aht-blog-recent-post">
     <h3 class="blog-recent-post-heading">Latest Blog !!!</h3>
-    <ul class="list-group wbcom-cat-list-main">
+    <ul class="list-group aht-cat-list-main">
         <?php if(!empty($latestPost)){?>
             <?php foreach ($latestPost as $data) {?>
-                <li class="list-group-item wbcom-recent-post-list">
+                <li class="list-group-item aht-recent-post-list">
                     <a href="<?= $baseUrl.'ahtblog/post/view/?id='.$data['id'];?>">
                         <?= $data['title']?>
                     </a>
                 </li>
             <?php }?>
         <?php } else {?>
-            <li class="list-group-item wbcom-recent-post-list message notice">No latest post found.</li>
+            <li class="list-group-item aht-recent-post-list message notice">No latest post found.</li>
         <?php }?>
     </ul>
 </div>

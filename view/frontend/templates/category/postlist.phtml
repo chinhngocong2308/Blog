@@ -1,15 +1,20 @@
 <?php
-$blogPostCollection = $block->getCollection();
 $catPostId = $block->getCategoryPostId();
 $config = $block->getConfigDetails();
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $helper = $objectManager->create('AHT\Blog\Helper\Data');
 $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+if ($config['number_display']) {
+    $blogPostCollection = $block->getCollection()->setPageSize($config['number_display']);
+} else 
+{
+    $blogPostCollection = $block->getCollection();
+}
 ?>
-<div class="wbcomblog-post-main">
+<div class="ahtblog-post-main">
     <?php
     if (!empty($catPostId)) : ?>
-        <ul class="wbblog-post-listing-main">
+        <ul class="ahtblog-post-listing-main">
             <?php foreach ($blogPostCollection as $data) : ?>
                 <?php if (in_array($data->getId(),$catPostId)) : ?>
                     <?php
@@ -28,16 +33,16 @@ $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
                             }
                         }
                     ?>
-                    <li class="wbblog-post-listing">
-                        <div class="wbcomblog-post-list">
-                            <div class="wbcomblog-post-list-image">
+                    <li class="ahtblog-post-listing">
+                        <div class="ahtblog-post-list">
+                            <div class="ahtblog-post-list-image">
                                 <a class="post-title" href="<?php echo $this->getUrl('ahtblog/post/view',
                                     ['id' => $data->getId()]) ?>">
-                                <img src="<?= $imagePath;?>" alt="post-img" class="wbblog-post-listing-image">
+                                <img src="<?= $imagePath;?>" alt="post-img" class="ahtblog-post-listing-image">
                                 </a>
                             </div>
-                            <div class="wbcomblog-post-list-main-content">
-                                <h2 class="wbcom-post-heading">
+                            <div class="ahtblog-post-list-main-content">
+                                <h2 class="aht-post-heading">
                                     <a class="post-title" href="<?php echo $this->getUrl('ahtblog/post/view',
                                         ['id' => $data->getId()]) ?>">
                                         <?php echo $data->getTitle();?>

@@ -1,0 +1,19 @@
+<?php
+$formKey = $block->getFormKey();
+$baseUrl = $block->getBaseUrl();
+$postParam = $block->getPostParam();
+?>
+<div class="aht-blog-search">
+    <form class="form aht-minisearch" id="aht_search_mini_form" action="<?= $baseUrl.'ahtblog/post/search'?>" method="get">
+        <div class="field aht-search">
+            <div class="control">
+                <input id="ahtsearch" type="text" name="query" value="<?= $postParam;?>" placeholder="Type to search blog ..." class="input-text" maxlength="128" role="combobox" required="required" >
+            </div>
+            <div class="actions">
+                <button type="submit" title="Search" class="action aht-search-submit" aria-label="Search">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

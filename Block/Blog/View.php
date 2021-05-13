@@ -19,13 +19,9 @@ class View extends \Magento\Framework\View\Element\Template
     /**
      * @var \AHT\Blog\Model\ResourceModel\Comment\Collection
      */
-    // protected $commentCollection;
+    protected $commentCollection;
 
     protected $helper;
-
-    protected $_productRepositoryFactory;
-
-    protected $productFactory;
 
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
@@ -33,20 +29,16 @@ class View extends \Magento\Framework\View\Element\Template
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \AHT\Blog\Model\PostFactory $postFactory,
         \Magento\Framework\Data\Form\FormKey $formKey,
-        // \AHT\Blog\Model\ResourceModel\Comment\Collection $commentCollection,
-        \AHT\Blog\Helper\Data $helper,
-        \Magento\Catalog\Model\ProductFactory $productFactory,
-        \Magento\Catalog\Api\ProductRepositoryInterfaceFactory $productRepositoryFactory
+        \AHT\Blog\Model\ResourceModel\Comment\Collection $commentCollection,
+        \AHT\Blog\Helper\Data $helper
     )
     {
         $this->postFactory = $postFactory;
         $this->_scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
         $this->formKey = $formKey;
-        // $this->commentCollection = $commentCollection;
+        $this->commentCollection = $commentCollection;
         $this->helper = $helper;
-        $this->_productRepositoryFactory = $productRepositoryFactory;
-        $this->productFactory = $productFactory;
         parent::__construct($context);
     }
 
@@ -101,7 +93,6 @@ class View extends \Magento\Framework\View\Element\Template
      */
     public function getConfigDetails(){
         $config = [];
-        // $config['product'] = $this->_scopeConfig->getValue('ahtblog/general/product', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $config['comment'] = $this->_scopeConfig->getValue('ahtblog/general/comment', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         return $config;
     }
@@ -110,14 +101,14 @@ class View extends \Magento\Framework\View\Element\Template
      * @return array
      * @return comment for post
      */
-    // public function getPostComment(){
-    //     $id = $this->getRequest()->getParams();
-    //     $comment = $this->commentCollection
-    //         ->addFieldToFilter('post_id',$id)
-    //         ->addFieldToFilter('status',1);
-    //     $commentData = $comment->getData();
-    //     return $commentData;
-    // }
+    public function getPostComment(){
+        $id = $this->getRequest()->getParams();
+        $comment = $this->commentCollection
+            ->addFieldToFilter('post_id',$id)
+            ->addFieldToFilter('status',1);
+        $commentData = $comment->getData();
+        return $commentData;
+    }
 
     public function getPostAuthor(){
         $author = '';
@@ -129,5 +120,5 @@ class View extends \Magento\Framework\View\Element\Template
         }
         return $author;
     }
-    
+
 }
