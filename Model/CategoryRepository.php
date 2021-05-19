@@ -59,12 +59,11 @@ class CategoryRepository implements CategoryRepositoryInterface
         return $category;
     }
 
-    public function getById($Id)
+    public function getById($categoryId)
     {
-		$category = $this->categoryFactory->create();
-        $category->load($Id);
+		$category = $this->categoryFactory->create()->load($categoryId);
         if (!$category->getId()) {
-            throw new NoSuchEntityException(__('Category with id "%1" does not exist.', $Id));
+            throw new NoSuchEntityException(__('Category with id "%1" does not exist.', $categoryId));
         }
         return $category;
     }

@@ -71,7 +71,9 @@ $config = $block->getConfigDetails();
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <?= $helper->getPostAuthor($data['author']); ?></span>
                             <div class="ahtblog-post-content">
-                                <?php echo $data->getShortContent(); ?>
+                                <?php $shortcontent = $data->getShortContent(); 
+                                    echo $shortcontent = strlen($shortcontent ) > 120 ? substr($shortcontent ,0,120)."..." : $shortcontent ;
+                                ?>
                             </div>
                             <a class="action primary readmore" href="<?php echo $this->getUrl(
                                                                             'ahtblog/post/view',
@@ -93,7 +95,7 @@ $config = $block->getConfigDetails();
         <p class="message notice"><?php echo __('No blog post available.') ?></p>
     <?php endif; ?>
 </div>
-<script>
+<script type="text/javascript">
     require([
         'jquery',
         'slick'

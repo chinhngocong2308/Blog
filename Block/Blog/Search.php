@@ -45,6 +45,9 @@ class Search extends Template
      */
     protected function _prepareLayout()
     {
+        $this->pageConfig->getTitle()->set(__('Post Category'));
+        $this->pageConfig->setKeywords(__('Post Category'));
+        $this->pageConfig->setDescription(__('Post Category'));
         $query = $this->getRequest()->getParam('query');
         $collection = $this->postFactory->create()->getCollection()
             ->addFieldToFilter('status', 1)

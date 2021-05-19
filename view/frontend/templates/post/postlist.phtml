@@ -6,12 +6,10 @@ $config = $block->getConfigDetails();
 
 if ($config['number_display']) {
     $blogPostCollection = $block->getCollection()->setPageSize($config['number_display']);
-} else 
-{
+} else {
     $blogPostCollection = $block->getCollection();
 }
 ?>
-
 <div class="ahtblog-post-main">
     <?php
     if ($blogPostCollection->getSize() > 0) : ?>
@@ -65,7 +63,9 @@ if ($config['number_display']) {
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <?= $helper->getPostAuthor($data['author']); ?></span>
                             <div class="ahtblog-post-content">
-                                <?php echo $data->getShortContent(); ?>
+                                <?php $shortcontent = $data->getShortContent();
+                                echo $shortcontent = strlen($shortcontent) > 120 ? substr($shortcontent, 0, 120) . "..." : $shortcontent;
+                                ?>
                             </div>
                             <a class="action primary readmore" href="<?php echo $this->getUrl(
                                                                             'ahtblog/post/view',

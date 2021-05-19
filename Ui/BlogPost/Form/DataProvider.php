@@ -58,23 +58,14 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             }
             $data['image'] = $imaArr;
             $data['data'] = ['links' => []];
-            $collection = (array)(json_decode($post->getProductId()));
             $items = [];
-            if((!empty($collection)) && (array_key_exists('products',$collection))){
-                foreach($collection['products'] as $item) {
-                    $newItems = (array)$item;
-                    $items[] = $newItems;
-                }
-            }
-            $data['links']['products'] = $items;
-            $postData = (array)(json_decode($post->getPostProduct()));
+           
             $postId = [];
             if (!empty($postData)){
                 foreach ($postData as $newData){
                     $postId[] = (array)$newData;
                 }
             }
-            $data['ahtblog_post_form_product_listing']['general'] = $postId;
             $this->loadedData[$post->getId()]= $data;
         }
             // echo'<pre>';

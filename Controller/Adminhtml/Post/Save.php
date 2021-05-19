@@ -36,14 +36,12 @@ class Save extends \Magento\Backend\App\Action
             if (array_key_exists('links', $postData)){
                 $model->setProductId(json_encode($postData['links']));
             }
-            if (array_key_exists('ahtblog_post_form_product_listing', $postData)){
-                $model->setPostProduct(json_encode($postData['ahtblog_post_form_product_listing']));
-            }
             $model->setStores(json_encode($postData['stores']));
             $model->setSticky($postData['sticky']);
             $model->setAuthor($postData['author']);
             $model->setPublishedAt($postData['published_at']);
             $model->setCategoryId(json_encode($postData['category_id']));
+            // $postData['image']
             if(array_key_exists('image', $postData)){
                 $model->setImage(json_encode($postData['image']));
             }

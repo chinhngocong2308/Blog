@@ -33,7 +33,7 @@ class MassApproved extends \Magento\Backend\App\Action {
             $collection = $this->_filter->getCollection($this->_collectionFactory->create());
             $itemsApproved = 0;
             foreach ($collection as $item) {
-                $item->setStatus(0);
+                $item->setStatus(1);
                 $item->save();
                 $itemsApproved++;
             }

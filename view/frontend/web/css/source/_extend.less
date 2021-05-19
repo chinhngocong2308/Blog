@@ -5,9 +5,11 @@
 
 @import "slick.less";
 @import "slick-theme.less";
+
 //
 //  Color variables
 //  _____________________________________________
+
 @color-white: #fff;
 @color-shadow: #ccc8c8;
 @color-pink: #e9d5d2;
@@ -17,13 +19,60 @@
 @color-button: #30241a;
 @color-button-hover: #221912;
 @color-bg-form-cmt: #f9f9f9;
+@color-333: #333;
+@color-eee: rgb(248, 244, 244);
+@color-green: #28a738;
+@color-red: #ea1f24;
 
 & when (@media-common =true) {
 
-    /*aht Blog Post Listing*/
+    .ahtblog-post-index,
+    .ahtblog-category-post {
+        .page-title {
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+    }
+
+    .ahtblog-post-view {
+        .page-title {
+            margin-bottom: 20px;
+            font-size: 30px;
+            padding: 0 15px;
+        }
+    }
+
+    .post-comments {
+        margin-left: 15px;
+        background-color: @color-bg-form-cmt;
+    }
+
+    .comment_message {
+        padding-bottom: 20px;
+        padding-left: 15px;
+        text-align: center;
+
+        .text-success {
+            border: solid 1px @color-green;
+            color: @color-green;
+            padding: 9px 15px;
+        }
+
+        .text-error {
+            border: solid 1px @color-red;
+            color: @color-red;
+            padding: 9px 15px;
+        }
+    }
+
+    .reply-form-blog {
+        padding: 20px 0;
+    }
+
+    /*AHT Blog Post Listing*/
     .ahtblog-post-main,
     .ahtblog__sidebar-main {
-        margin-top: 30px;
+        margin-top: 0px;
     }
 
     .ahtblog-post-listing-main {
@@ -151,8 +200,8 @@
         border: 1px solid @color-button;
 
         &:hover,
-        :active,
-        :focus {
+        &:active,
+        &:focus {
             background-color: @color-button-hover;
             border: 1px solid @color-button-hover;
         }
@@ -194,29 +243,78 @@
             top: 50px;
         }
 
-        .p-actions a {
-            color: @color-button;
-            font-size: 12px;
+        .p-actions {
+            padding: 15px 0;
 
-            &:hover,
-            :active {
-                color: @color-button-hover;
+            a {
+                color: @color-333;
+                font-size: 12px;
+                background: @color-button;
+                color: @color-white;
+                padding: 5px 10px;
+                font-weight: bold;
+                line-height: 20px;
+                text-decoration: none;
+
+                &:hover {
+                    background-color: @color-333;
+                }
             }
         }
+
+
+    }
+
+    .blog-view-comment-list.reply-comment {
+        margin-left: 50px;
+        padding: 5px 15px 5px;
+
+        .ahtuser-info {
+            margin: 0;
+            display: inline-block;
+            float: left;
+            border-bottom: none;
+        }
+
+        .p-actions {
+            padding: 5px 0;
+            margin-top: 25px;
+            a {
+                color: @color-linka;
+                background: none;
+                padding: 0;
+            }
+        }
+
+        .blog-view-comment-content {
+            margin: 0;
+            display: inline-block;
+            float: left;
+            padding-left: 0;
+            margin-top: -2px;
+        }
+        &::after {
+            display: none;
+        }
+    }
+
+    span.reply {
+        color: @color-shadow;
+        margin: 0;
     }
 
     .ahtuser-info {
         border-bottom: 1px solid #ddd;
         padding-bottom: 10px;
         margin-bottom: 10px;
-    }
 
-    .ahtuser-info span {
-        margin-right: 8px;
-        font-weight: 600;
-        text-transform: uppercase;
-        font-size: 12px;
-        letter-spacing: 0.4px;
+        span {
+            margin-right: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.4px;
+        }
     }
 
     .blog-post-comment-form {
@@ -232,13 +330,37 @@
     .blog-post-comment-list {
         margin-top: 30px;
     }
+
     .c-replyform-comment {
         padding: 0 15px;
     }
+
     .c-replyform .c-btn-hld {
         margin-top: 20px;
+
         button {
+            border: 1px solid @color-button;
+            border-radius: 0;
             margin-top: 20px;
+
+            &.cancel {
+                background-color: @color-white;
+                color: @color-button;
+
+                &:hover {
+                    background-color: @color-eee;
+                }
+            }
+
+            &.submit {
+                margin-right: 10px;
+                background-color: @color-button;
+                color: @color-white;
+
+                &:hover {
+                    background-color: @color-333;
+                }
+            }
         }
 
         .lr-hld {
@@ -268,6 +390,7 @@
 
         }
     }
+
     /*aht Sidebar Section*/
     .field.aht-search {
         position: relative;
@@ -312,6 +435,10 @@
         a {
             color: @color-linka;
             text-decoration: none;
+        }
+
+        li.list-group-item.aht-recent-post-list a {
+            font-weight: normal;
         }
 
         h3 {

@@ -73,6 +73,12 @@ class Info extends Generic implements TabInterface{
         }else{
             $parentCat = $this->helper->getParentCatList($id=0);
         }
+
+        // echo '<pre>';
+        // var_dump($parentCat);
+        // echo '<pre>';
+        // exit();
+
         $form = $this->_formFactory->create();
         $fieldset = $form->addFieldset(
             'base_fieldset',
@@ -122,7 +128,8 @@ class Info extends Generic implements TabInterface{
                     'label'    => __('Parent Category'),
                     'title'    => __('Parent Category'),
                     'required' => false,
-                    'values'   => $parentCat
+                    'values'   => $parentCat,
+                    'note'   => 'If no choose, this category is parent category.'
                 ]
             );
         }

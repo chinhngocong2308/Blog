@@ -2,7 +2,6 @@
 
 namespace AHT\Blog\Setup;
 
-
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
@@ -31,18 +30,7 @@ class InstallSchema implements InstallSchemaInterface
                     ],
                     'Id'
                 )
-                ->addColumn(
-                    'parent_id',
-                    \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
-                    255,
-                    [
-                        'identity'  => true,
-                        'unsigned'  => true,
-                        'nullable'  => false,
-                        'primary'   => true,
-                    ],
-                    'Parent Id'
-                )
+                
                 ->addColumn(
                     'title',
                     \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -156,7 +144,7 @@ class InstallSchema implements InstallSchemaInterface
                     \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                     255,
                     [
-                        'nullable'  => true,
+                        'nullable'  => false,
                     ],
                     'Blog Category'
                 )
@@ -361,12 +349,12 @@ class InstallSchema implements InstallSchemaInterface
                 )
                 ->addColumn(
                     'parent_id',
-                    \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
                     255,
                     [
-                        'nullable'  => false,
+                        'nullable'  => true,
                     ],
-                    'Parent Comment Id'
+                    'Parent Id'
                 )
                 ->addColumn(
                     'username',

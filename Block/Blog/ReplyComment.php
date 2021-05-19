@@ -3,10 +3,10 @@
 namespace AHT\Blog\Block\Blog;
 
 /**
- * Class View
+ * Class ReplyComment
  * @package AHT\Blog\Block\Blog
  */
-class View extends \Magento\Framework\View\Element\Template
+class ReplyComment extends \Magento\Framework\View\Element\Template
 {
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
@@ -119,19 +119,6 @@ class View extends \Magento\Framework\View\Element\Template
             $author = $this->helper->getPostAuthor($postData['author']);
         }
         return $author;
-    }
-
-    protected function _prepareLayout()
-    {
-        parent::_prepareLayout();
-        $id = $this->getRequest()->getParams();
-        $post = $this->postFactory->create()->load($id);
-
-        $this->pageConfig->getTitle()->set(__($post['title']));
-        $this->pageConfig->setKeywords(__($post['title']));
-        $this->pageConfig->setDescription(__($post['title']));
-
-        return $this;
     }
 
 }

@@ -6,13 +6,13 @@ $config = $block->getConfigDetails();
 $postComment = $block->getPostComment();
 $author = $this->getPostAuthor();
 $mediaUrl = $this->getMediaBaseUrl();
+
 ?>
 
 <?php if (!empty($postData)) { ?>
     <!--codes start for showing blog-->
     <div class="blog-view-main">
         <div class="blog-view-header">
-            <h2><?= $postData['title']; ?></h2>
             <span class="label date">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
                 <?php
@@ -63,28 +63,61 @@ $mediaUrl = $this->getMediaBaseUrl();
                     <h3>Comment</h3>
                     <div class="blog-view-comment-main">
                         <?php foreach ($postComment as $comment) { ?>
-                            <div class="blog-view-comment-list">
-                                <div class="ahtuser-info">
-                                    <span>
-                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                        <?php
-                                        $dateStr = strtotime($comment['created_at']);
-                                        echo date('d-M-Y', $dateStr);
-                                        ?>
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-user" aria-hidden="true"></i>
-                                        <?= $comment['username'] ?>
-                                    </span>
-                                </div>
-                                <p class="blog-view-comment-content">
-                                    <?= $comment['comment']; ?>
-                                </p>
-                                <div class="p-actions">
-                                    <a href="#" class="reply-action" data-comment="2" title="Reply">Reply</a>
-                                </div>
+                            <?php if ($comment['parent_id'] == ""){
+                            ?><div <?php echo 'class="blog-view-comment-list comment-' . $comment['id'] . '"' ?>>
+                            <div class="ahtuser-info">
+                                <span>
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    <?php
+                                    $dateStr = strtotime($comment['created_at']);
+                                    echo date('d-M-Y', $dateStr);
+                                    ?>
+                                </span>
+                                <span>
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <?= $comment['username'] ?>
+                                </span>
                             </div>
-                        <?php } ?>
+                            <p class="blog-view-comment-content">
+                                <?= $comment['comment']; ?>
+                            </p>
+                          
+                            <div class="p-actions">
+                                <a class="reply-action" id="relpy-comment" data-comment="<?= $comment['id'] ?>" href="javascript:void(0)" title="<?= $block->escapeHtml(__('Reply')) ?>"><?= $block->escapeHtml(__('Reply')) ?>
+                                </a>
+                            </div>
+                        </div>
+                        <?php }
+                    
+                        foreach($postComment as $comments) {
+                                    if($comments['parent_id'] == $comment['id'] || $comments['parent_id'] == $comment['id'] ){
+                                    ?> <div <?php echo 'class="blog-view-comment-list reply-comment comment-' . $comments['id'] . '"' ?>>
+                                    <div class="ahtuser-info">
+                                        <span>
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            <?php
+                                            $dateStr = strtotime($comments['created_at']);
+                                            echo date('d-M-Y', $dateStr);
+                                            ?>
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                            <?= $comments['username'] ?>
+                                           <span class="reply"> Reply to:</span><?= $comment['username'] ?>:
+                                        </span>
+                                    </div>
+                                    <p class="blog-view-comment-content">
+                                        <span>   <?= $comments['comment']; ?></span>
+                                    </p>
+                                    <div class="p-actions">
+                                        <!-- <a class="reply-action" id="relpy-comment" data-comment="<?= $comments['id'] ?>" href="javascript:void(0)" title="<?= $block->escapeHtml(__('Reply')) ?>"><?= $block->escapeHtml(__('Reply')) ?>
+                                        </a> -->
+                                    </div>
+                                   
+                                </div><?php
+                                 }
+                            } 
+                    } ?>
                     </div>
                 </div>
             <?php } ?>

@@ -2,9 +2,12 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="aht_default_blog"/>
     <body>
+        <move element="page.main.title" destination="content" before="-" />
         <referenceContainer name="content">
             <block class="AHT\Blog\Block\Blog\View" name="post-view" template="AHT_Blog::post/view.phtml" cacheable="false"/>
+            <container name="blog.post.comments" label="Comments Container" htmlTag="div" htmlClass="block comments">
+                <block class="AHT\Blog\Block\Blog\ReplyComment" name="blog.post.comments.aht" template="AHT_Blog::post/replycomment.phtml" after="-"/>
+            </container>
         </referenceContainer>
-
     </body>
 </page>

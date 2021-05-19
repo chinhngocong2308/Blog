@@ -41,35 +41,44 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param $id
      * @return array
      */
-    public function getParentCatList($id){
+    public function getParentCatList($id)
+    {
         $optionArray = [];
         $catCollection = $this->_objectManager->create('AHT\Blog\Model\ResourceModel\Category\Collection');
-        if ((!empty($id)) && ($id != 0)){
+        if ((!empty($id)) && ($id != 0)) {
             $catCollection = $catCollection->addFieldToFilter('id', ['neq' => $id])
-                ->addFieldToFilter('status', ['eq' => 1]);
+                ->addFieldToFilter('status', ['eq' => 1])
+                ->addFieldToFilter('parent_category', '["0"]');
         }
-        if ($id != 1){
+        if ($id != 1) {
             $catCollectionData = $catCollection->getData();
-            if (!empty($catCollectionData)){
-                foreach ($catCollectionData as $key=> $data){
-                    $optionArray[$key]['label'] = $data['title'];
-                    $optionArray[$key]['value'] = $data['id'];
+            if (!empty($catCollectionData)) {
+                foreach ($catCollectionData as $key => $data) {
+                    // only get parent category
+                    if ($data["parent_category"] == '["0"]') {
+                        $optionArray[$key]['label'] = $data['title'];
+                        $optionArray[$key]['value'] = $data['id'];
+                        // $optionArray[$key]['check_parent'] = $data['parent_category'];
+                    }
                 }
             }
+            array_unshift($optionArray, array('value'=>0, 'label'=>__('No Parent')));
         }
+        
         return $optionArray;
     }
 
     /**
      * @return array
      */
-    public function getCatList(){
+    public function getCatList()
+    {
         $optionArray = [];
         $catCollection = $this->_objectManager->create('AHT\Blog\Model\ResourceModel\Category\Collection');
         $catCollection = $catCollection->addFieldToFilter('status', ['eq' => 1]);
         $catCollectionData = $catCollection->getData();
-        if (!empty($catCollectionData)){
-            foreach ($catCollectionData as $key=> $data){
+        if (!empty($catCollectionData)) {
+            foreach ($catCollectionData as $key => $data) {
                 $optionArray[$key]['label'] = $data['title'];
                 $optionArray[$key]['value'] = $data['id'];
             }
@@ -77,7 +86,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $optionArray;
     }
 
-    public function getPostAuthor($id){
+    public function getPostAuthor($id)
+    {
         return $this->userFactory->create()->load($id)->getName();
     }
 }

@@ -49,6 +49,10 @@ class Save extends \Magento\Backend\App\Action
     public function execute() {
         $categoryData = $this->getRequest()->getParams();
         $model = $this->categoryFactory->create();
+        // echo '<pre>';
+        // var_dump($categoryData);
+        // echo '<pre>';
+        // exit();
         if(isset($categoryData['id'])) {
             $model = $model->load($categoryData['id']);
         }
@@ -70,11 +74,11 @@ class Save extends \Magento\Backend\App\Action
             }catch(\Exception $e){
                 $this->_messageManager->addErrorMessage('Something went wrong while saving category');
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->_messageManager->addErrorMessage('Something went wrong '.$e->getMessage());
         }
-        $resultRedirect = $this->_resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        $resultRedirect->setPath('ahtblog/category/index');
-        return $resultRedirect;
+        // $resultRedirect = $this->_resultFactory->create(ResultFactory::TYPE_REDIRECT);
+        // $resultRedirect->setPath('ahtblog/category/index');
+        // return $resultRedirect;
     }
 }

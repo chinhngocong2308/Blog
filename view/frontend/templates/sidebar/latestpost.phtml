@@ -9,7 +9,9 @@ $latestPost = $block->getLatestPostList();
             <?php foreach ($latestPost as $data) {?>
                 <li class="list-group-item aht-recent-post-list">
                     <a href="<?= $baseUrl.'ahtblog/post/view/?id='.$data['id'];?>">
-                        <?= $data['title']?>
+                        <?php $shortcontent = $data['title']; 
+                                    echo $shortcontent = strlen($shortcontent ) > 50 ? substr($shortcontent ,0,50)."..." : $shortcontent ;
+                                ?>
                     </a>
                 </li>
             <?php }?>

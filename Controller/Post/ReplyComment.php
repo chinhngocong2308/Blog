@@ -2,19 +2,21 @@
 
 namespace AHT\Blog\Controller\Post;
 
-class Comment extends \Magento\Framework\App\Action\Action
+class ReplyComment extends \Magento\Framework\App\Action\Action
 {
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
     protected $_pageFactory;
     /**
-     * @var \AHT\Blog\Model\CommentFactory
+     * @var \AHT\Blog\Model\ReplyCommentFactory
      */
     protected $commentFactory;
+    protected $json;
+    protected $resultJsonFactory;
 
     /**
-     * Comment constructor.
+     * ReplyComment constructor.
      * @param \Magento\Framework\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $pageFactory
      * @param \AHT\Blog\Model\CommentFactory $commentFactory
@@ -24,9 +26,13 @@ class Comment extends \Magento\Framework\App\Action\Action
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $pageFactory,
         \AHT\Blog\Model\CommentFactory $commentFactory,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Magento\Framework\Serialize\Serializer\Json $json,
+        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
     )
     {
+        $this->json = $json;
+        $this->resultJsonFactory = $resultJsonFactory;
         $this->commentFactory = $commentFactory;
         $this->_pageFactory = $pageFactory;
         $this->_scopeConfig = $scopeConfig;
@@ -37,20 +43,21 @@ class Comment extends \Magento\Framework\App\Action\Action
     public function execute() {
         $status = $this->_scopeConfig->getValue('ahtblog/general/comment_status', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $postData = $this->getRequest()->getParams();
+         /** @var \Magento\Framework\Controller\Result\Json $resultJson */
+        $resultJson = $this->resultJsonFactory->create();
         $model = $this->commentFactory->create();
-        $model->setPostId($postData['post_id']);
+
+        $model->setPostId($postData['postId']);
         $model->setUsername($postData['username']);
         $model->setEmail($postData['email']);
         $model->setComment($postData['comment']);
+        $model->setParentId($postData['parentId']);
         $model->setStatus($status);
+        $resultJson->setData($model);
         try{
             $model->save();
-            $this->_messageManager->addSuccessMessage(__('Comment added succesfully.'));
         }catch(\Exception $e){
             $this->_messageManager->addErrorMessage(__('Something went wrong while adding comment.'));
         }
-        $resultRedirect = $this->resultRedirectFactory->create();
-        $resultRedirect->setPath('ahtblog/post/view/id/'.$postData['post_id']);
-        return $resultRedirect;
     }
 }

@@ -1,6 +1,8 @@
 <?php
 namespace AHT\Blog\Block\Category;
 
+use AHT\Blog\Model\CategoryFactory;
+
 class Post extends \Magento\Framework\View\Element\Template
 {
     /**
@@ -12,8 +14,10 @@ class Post extends \Magento\Framework\View\Element\Template
         \Magento\Framework\View\Element\Template\Context $context,
         \AHT\Blog\Model\ResourceModel\Post\Collection $postCollection,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        CategoryFactory $categoryFactory,
         array $data = []
     ) {
+        $this->categoryFactory = $categoryFactory;
         $this->postCollection = $postCollection;
         $this->_scopeConfig = $scopeConfig;
         parent::__construct($context, $data);
@@ -31,6 +35,12 @@ class Post extends \Magento\Framework\View\Element\Template
      */
     protected function _prepareLayout()
     {
+        $id = $this->getRequest()->getParam('id');
+        $categoryById = $this->categoryFactory->create()->load($id);
+        $this->pageConfig->getTitle()->set(__($categoryById['title']));
+        $this->pageConfig->setKeywords(__($categoryById['title']));
+        $this->pageConfig->setDescription(__($categoryById['title']));
+
         parent::_prepareLayout();
         $pager = $this->getLayout()->createBlock(
             'Magento\Theme\Block\Html\Pager',

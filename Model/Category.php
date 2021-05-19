@@ -48,6 +48,11 @@ class Category extends \Magento\Framework\Model\AbstractModel implements Categor
 		return $this->getData(self::METADESCRIPTION);
 	}
 
+	public function getMetaKeyword()
+	{
+		return $this->getData(self::METAKEYWORD);
+	}
+
 	public function getMetaTitle()
 	{
 		return $this->getData(self::METATITLE);
@@ -78,10 +83,16 @@ class Category extends \Magento\Framework\Model\AbstractModel implements Categor
 		return $this->setData(self::TITLE, $title);
 	}
 
+	public function setMetaKeyword($metakeyword)
+	{
+		return $this->setData(self::METAKEYWORD, $metakeyword);
+	}
+	
 	public function setMetaDescription($metadescription)
 	{
 		return $this->setData(self::METADESCRIPTION, $metadescription);
 	}
+
 
     public function setMetaTitle($metatitle)
 	{

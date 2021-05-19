@@ -50,8 +50,11 @@ class Post extends Template
      */
     protected function _prepareLayout()
     {
+        $this->pageConfig->getTitle()->set(__('AHT Blog'));
+        $this->pageConfig->setKeywords(__('AHT Blog Post'));
+        $this->pageConfig->setDescription(__('AHT Blog Post'));
         parent::_prepareLayout();
-       
+
         return $this;
     }
 
@@ -79,11 +82,4 @@ class Post extends Template
      * @param string $key
      * @return string
      */
-    public function getDataWidgets($key)
-    {
-        if (!$this->hasData($key)) {
-            $this->setData($key, 99999);
-        }
-        return $this->getData($key);
-    }
 }

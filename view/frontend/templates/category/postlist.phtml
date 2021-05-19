@@ -60,7 +60,9 @@ if ($config['number_display']) {
                                     <?= $helper->getPostAuthor($data['author']);?>
                                 </span>
                                 <div class="ahtblog-post-content">
-                                    <?php echo $data->getShortContent(); ?>
+                                <?php $shortcontent = $data->getShortContent(); 
+                                    echo $shortcontent = strlen($shortcontent ) > 120 ? substr($shortcontent ,0,120)."..." : $shortcontent ;
+                                ?>
                                 </div>
                                 <a class="action primary readmore" href="<?php echo $this->getUrl('ahtblog/post/view',
                                     ['id' => $data->getId()]) ?>">Read more</a>

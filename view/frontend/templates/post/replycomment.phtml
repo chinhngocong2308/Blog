@@ -1,0 +1,111 @@
+<?php
+
+/**
+ * Blog post comments template
+ *
+ * @var $block \AHT\Blog\Block\Blog\ReplyComment
+ */
+?>
+<?php
+$postData = $block->getPostDetails();
+$baseUrl  = $block->getBaseUrl();
+$formKey = $block->getFormKey();
+$config = $block->getConfigDetails();
+$postComment = $block->getPostComment();
+$author = $this->getPostAuthor();
+$mediaUrl = $this->getMediaBaseUrl();
+// echo '<pre>';
+// var_dump($baseUrl.'ahtblog/post/replycomment');
+// echo '<pre>';
+// // exit();
+?>
+<div class="comment_message"></div>
+<div class="post-comments">
+    <div id="c-replyform-comment" class="c-replyform c-replyform-comment">
+        <form id="comment_form" class="reply-form-blog" method="post" data-mage-init='{"validation":{}}' style="display:none;">
+            <input type="hidden" id="formKey" value="<?= $block->getFormKey() ?>" name="formKey">
+            <input type="hidden" id="post_id" value="<?= $postData['id']; ?>" name="post_id">
+            <input type="hidden" id="parentID" name="parent_id" value="" />
+            <textarea class="refresh-value" id="comments" name="comment" placeholder="<?= $block->escapeHtml(__('Add a reply...')) ?>" data-validate="{required:true}"></textarea>
+            <div class="c-btn-hld">
+                <div class="lr-hld">
+                    <div class="left-hld">
+                        <input type="text" id="usernames" name="username" value="" placeholder="<?= $block->escapeHtml(__('Full Name')) ?>" class="input-text required-entry refresh-value" data-validate="{required:true}" autocomplete="off" aria-required="true">
+                    </div>
+                    <div class="right-hld">
+                        <input type="email" id="emails" name="email" autocomplete="email" value="" placeholder="<?= $block->escapeHtml(__('Email')) ?>" class="input-text required-entry refresh-value" data-validate="{required:true, 'validate-email':true}" aria-required="true">
+                    </div>
+                </div>
+                <button type="button" class="submit reply-submit-action"><?= $block->escapeHtml(__('Submit')) ?></button>
+                <button type="button" class="cancel reply-cancel-action"><?= $block->escapeHtml(__('Cancel')) ?></button>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        "jquery",
+        "mage/mage"
+    ], function($) {
+        $(document).ready(function() {
+            $(".cancel.reply-cancel-action").click(function() {
+                $("form.reply-form-blog").hide();
+            });
+        });
+        var dataID = "";
+        $(".reply-action").click(function() {
+            console.log(dataID)
+            dataID = $(this).attr("data-comment");
+            $("form.reply-form-blog")[0].reset();
+            $("form.reply-form-blog").show()
+
+        });
+        $('.reply-submit-action').click(function(e) {
+            e.preventDefault();
+
+            document.getElementById("parentID").value = dataID;
+
+            var form_data = $(this).serialize();
+
+            var url = '<?= $baseUrl ?>ahtblog/post/replycomment';
+            var postId = $('#post_id').val();
+            var parentId = $('#parentID').val();
+            var comment = $('#comments').val();
+            var username = $('#usernames').val();
+            var email = $('#emails').val();
+            console.log(url);
+            if ($.trim(comment) == '') {
+                $('.comment_message').html('<p class="text-error">Please 1 type full input, try again.</p>').fadeIn(1000).delay(2000).fadeOut(1500)
+                return false;
+            }
+            if ($.trim(username) == '') {
+                $('.comment_message').html('<p class="text-error">Please 2 type full input, try again.</p>').fadeIn(1000).delay(2000).fadeOut(1500)
+                return false;
+            }
+            if ($.trim(email) == '') {
+                $('.comment_message').html('<p class="text-error">Please 3 type full input, try again.</p>').fadeIn(1000).delay(2000).fadeOut(1500)
+                return false;
+            }
+            jQuery.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    postId: postId,
+                    parentId: parentId,
+                    comment: comment,
+                    username: username,
+                    email: email,
+                },
+                dataType: "JSON",
+            }).done(function(data) {
+                $('.comment_message').html('<p class="text-success">Successful reply. Your comment will display after approved</p>').fadeIn(1000).delay(2000).fadeOut(1500)
+                $("form.reply-form-blog")[0].reset();
+                $("form.reply-form-blog").hide();
+                console.log(parentId)
+            }).fail(function(e) {
+                console.log(e);
+                alert("error");
+            })
+        });
+    });
+</script>

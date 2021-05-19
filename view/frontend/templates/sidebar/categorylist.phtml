@@ -15,26 +15,23 @@ $category = $block->getPostCategory();
                     $parentCate = [];
                 }
                 foreach ($parentCate as $value) {
-                    if ($value == 0 || $value == NULL) {
-            ?>
+                    if ($value == 0 || $value == NULL) { ?>
                         <li class="list-group-item aht-cat-list">
                             <a href="<?= $baseUrl . 'ahtblog/category/post/?id=' . $data['id']; ?>">
                                 <?= $data['title']; ?>
                             </a>
-                                <?php }
-                            foreach ($category as $datas) {
-                                if ($datas['id'] == $value) {
-                                ?>  <p class="child-category">
+                            <?php }
+                        foreach ($category as $datas) {
+                            if ($datas['id'] == $value) {
+                            ?> <p class="child-category">
                                     <a href="<?= $baseUrl . 'ahtblog/category/post/?id=' . $data['id']; ?>">
-                            <?php
-                                    echo $data['title'];
-                                    ?></p>
-                                    <?php
-                                }else { ?>
-                                <?php }
+                                        <?= $data['title']; ?>
+                                </p>
+                    <?php } else {
                             }
-                        } ?> </a>
-                            
+                        }
+                    } ?>
+                    </a>
                         </li>
                     <?php } ?>
                 <?php } else { ?>
